@@ -1,22 +1,15 @@
-import HomePage from '../views/HomePage.vue';
-import UserRegister from '../views/UserRegister.vue';
-import UserLogin from '../views/UserLogin.vue';
-import UserDashboard from '../views/UserDashboard.vue';
-import VueRouter from 'vue-router'
 import Vue from 'vue';
+import Router from 'vue-router';
+import LoginView from '../views/LoginView.vue';
+import RegisterView from '../views/RegisterView.vue';
+import MainView from '../views/MainView.vue';
 
+Vue.use(Router);
 
-Vue.use(VueRouter)
-const routes = [
-  { path: '/', name: 'HomePage', component: HomePage },
-  { path: '/register', name: 'UserRegister', component: UserRegister },
-  { path: '/login', name: 'UserLogin', component: UserLogin },
-  { path: '/dashboard', name: 'UserDashboard', component: UserDashboard },
-];
-
-const router = VueRouter.createRouter({
-  history: VueRouter.createWebHistory(process.env.BASE_URL),
-  routes,
+export default new Router({
+  routes: [
+    { path: '/login', component: LoginView },
+    { path: '/register', component: RegisterView },
+    { path: '/', component: MainView },
+  ],
 });
-
-export default router;
