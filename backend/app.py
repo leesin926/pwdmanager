@@ -16,7 +16,7 @@ from models import User, Password
 @app.route('/register', methods=['POST'])
 def register():
     data = request.json
-    new_user = User(username=data['username'], password=data['password'])
+    new_user = User(username=data['username'], password=data['password'], email=data['email'])
     db.session.add(new_user)
     db.session.commit()
     return jsonify({'message': 'User registered successfully!'})

@@ -1,5 +1,6 @@
 .DS_Store
 frontend/node_modules
+electron/node_modules
 frontend/dist
 backend/instance
 .venv
