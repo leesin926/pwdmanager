@@ -1,3 +1,5 @@
+import http
+
 from flask import Flask, request, jsonify
 from flask_cors import *
 from models import db
@@ -27,8 +29,8 @@ def login():
     data = request.json
     user = User.query.filter_by(username=data['username']).first()
     if user and user.password == data['password']:
-        return jsonify({'message': 'Login successful!', 'user_id': user.id})
-    return jsonify({'message': 'Invalid credentials!'}), 401
+        return jsonify({'code': http.HTTPStatus.OK, 'message': 'Login successful!', 'user_id': user.id})
+    return jsonify({'message': '用户不存在或密码错误！'}), 200
 
 
 @app.route('/passwords', methods=['POST'])

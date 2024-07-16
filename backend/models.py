@@ -13,6 +13,7 @@ class User(db.Model):
 class Password(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    site = db.Column(db.String(120), nullable=False)
+    title = db.Column(db.String(120), nullable=False)
+    account = db.Column(db.String(120), nullable=False)
     password = db.Column(db.String(120), nullable=False)
     user = db.relationship('User', backref=db.backref('passwords', lazy=True))

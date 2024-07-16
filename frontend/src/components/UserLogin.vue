@@ -8,7 +8,8 @@
       </el-form-item>
 
       <el-form-item label="密码:" prop="password">
-        <el-input type="password" v-model="loginForm.password" placeholder="请输入密码" autocomplete="off" show-password></el-input>
+        <el-input type="password" v-model="loginForm.password" placeholder="请输入密码" autocomplete="off"
+                  show-password></el-input>
       </el-form-item>
 
       <el-button type="primary" @click="submitForm('loginFormRef')" class="login-button">登录</el-button>
@@ -58,11 +59,14 @@ export default {
     async login(data) {
       try {
         const response = await this.$axios.post('/api/login', data);
-        alert(response.data.message);
-        if (response.data.message === 'Login successful') {
-          await this.$router.push('/main');
+        alert(response.message);
+        if (response.code === 200) {
+          let user_id = response.user_id;
+          await this.$store.dispatch('setUserId', user_id);
+          await this.$router.push('/detail');
         }
       } catch (error) {
+        console.log(error);
         alert('Invalid credentials');
       }
     },
